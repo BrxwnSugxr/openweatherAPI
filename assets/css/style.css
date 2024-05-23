@@ -39,4 +39,12 @@ body {
     background-color: #fff;
     cursor: pointer;
   }
+  & #locationBtn {
+    border: none;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 25px;
+    background-color: #ea6e4b;
+    cursor: pointer;
+  }
 }
