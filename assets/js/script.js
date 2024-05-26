@@ -48,8 +48,9 @@ function getWeatherDetails(name, lat, lon, country, state) {
     </div>
     <hr />
     <div class="card-footer">
-      <p><i class="fa-light fa-calander"></i>${}</p>
-      <p><i class="fa-light fa-location-dot"></i>${}</p>
+      <p><i class="fa-light fa-calander"></i> ${days[date.getDay()]}, 
+      ${date.getDate()}, ${months[date.getMonth()]} ${date.getFullYear()}</p>
+      <p><i class="fa-light fa-location-dot"></i>${name}, ${country}, </p>
     </div>
       `;
     })
