@@ -10,7 +10,8 @@ function getCityCoordinates() {
   fetch(GEOCODING_API_URL)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      let { name, lat, lon, country, state } = data[0];
+      getWeatherDetails(name, lat, lon, country, state);
     })
     .catch(() => {
       alert(`Failed to fetch coordinates of ${cityName}`);
