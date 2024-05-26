@@ -61,7 +61,14 @@ function getWeatherDetails(name, lat, lon, country, state) {
   fetch(FORECAST_API_URL)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      let uniqueForecastDays = [];
+      let fiveDaysForecast = data.list.filter((forecast) => {
+        let forecastDate = new Date(forecast.dt_txt).getDate();
+        if (!uniqueForecastDays.includes(forecastDate)) {
+          return uniqueForecastDays.push(forecastDate);
+        }
+      });
+      console.log(fiveDaysForecast);
     })
     .catch(() => {
       alert('Failed to fetch weather forecast');
