@@ -1,21 +1,23 @@
-let cityInput = document.getElementById('city_input');
-searchBtn = document.getElementById('searchBtn');
-(api_key = '9351ee22b0917e5901e60be617cf6f2b'),
-  (currentWeatherCard = document.querySelectorAll('.weather-left .card')[0]),
-  (fiveDaysForecastCard = document.querySelector('.day-forecast'));
+let cityInput = document.getElementById('city_input'),
+  searchBtn = document.getElementById('searchBtn'),
+  api_key = '9351ee22b0917e5901e60be617cf6f2b',
+  currentWeatherCard = document.querySelectorAll('.weather-left .card')[0],
+  fiveDaysForecastCard = document.querySelector('.day-forecast'),
+  aqiCard = document.querySelectorAll('.highlights .card')[0];
 
 function getWeatherDetails(name, lat, lon, country, state) {
   let FORECAST_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`;
-  let WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`,
-    days = [
+  (WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`),
+    (AIR_POLLUTION_API_URL = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api_key}`),
+    (days = [
       'Sunday',
       'Tuesday',
       'Wednesday',
       'thursday',
       'fridday',
       'saturday',
-    ],
-    months = [
+    ]),
+    (months = [
       'Jan',
       'Feb',
       'Mar',
@@ -28,7 +30,17 @@ function getWeatherDetails(name, lat, lon, country, state) {
       'Oct',
       'Nov',
       'Dec',
-    ];
+    ]);
+
+  fetch(AIR_POLLUTION_API_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(() => {
+      alert('Failed to fetch Air Quality Index');
+    });
+
   fetch(WEATHER_API_URL)
     .then((res) => res.json())
     .then((data) => {
