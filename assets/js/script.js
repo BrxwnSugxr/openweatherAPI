@@ -57,6 +57,15 @@ function getWeatherDetails(name, lat, lon, country, state) {
     .catch(() => {
       alert('Failed to fetch current weather');
     });
+
+  fetch(FORECAST_API_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(() => {
+      alert('Failed to fetch weather forecast');
+    });
 }
 
 function getCityCoordinates() {
