@@ -247,6 +247,12 @@ function getCityCoordinates() {
     });
 }
 
+function getUserCoordinates() {
+  navigator.geolocation.getCurrentPosition((position) => {
+    let { latitude, longitude } = position.coords;
+    console.log(latitude, longitude);
+  });
+}
 
 searchBtn.addEventListener('click', getCityCoordinates);
-
+locationBtn.addEventListener('click', getUserCoordinates);
