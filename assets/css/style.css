@@ -7,6 +7,11 @@
   --aqi-4: #ff7043;
   --aqi-5: #ef5350;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   min-height: 100vh;
@@ -14,6 +19,10 @@ body {
   color: #fff;
   font-family: sans-serif;
   padding: 0 15px;
+}
+
+hr {
+  margin-bottom: 10px;
 }
 
 .header {
@@ -24,7 +33,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  padding: 15px;
+  padding: 15px 0;
   & #city_input {
     background-color: var(--bg-color2);
     border: none;
@@ -84,7 +93,7 @@ body {
         color: #fff;
       }
     }
-    & .card-footer p {
+    &.card-footer p {
       font-size: 14px;
       margin-bottom: 12px;
     }
@@ -93,7 +102,7 @@ body {
       grid-template-columns: repeat(3, 1fr);
       place-items: center;
       margin-bottom: 15px;
-      & icon-wrapper {
+      & .icon-wrapper {
         display: flex;
         align-items: center;
       }
@@ -108,8 +117,8 @@ body {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       column-gap: 15px;
-      &.card:nth-of-type(1),
-      &.card:nth-of-type(2) {
+      & .card:nth-of-type(1),
+      & .card:nth-of-type(2) {
         grid-column: span 2;
       }
       & .card-head {
@@ -141,31 +150,34 @@ body {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         place-items: center;
-      }
-    }
-    &.sunrise-sunset {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      & .item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        & h2 {
-          margin-top: 15px;
+        & p {
+          text-align: center;
         }
       }
+      & .sunrise-sunset {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        & .item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          & h2 {
+            margin-top: 15px;
+          }
+        }
+      }
+      & .card-item {
+        display: flex;
+        justify-content: space-between;
+      }
     }
-    & .card-item {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-  & .hourly-forecast {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    column-gap: 10px;
-    & .card {
-      text-align: center;
+    & .hourly-forecast {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      column-gap: 10px;
+      & .card {
+        text-align: center;
+      }
     }
   }
 }
