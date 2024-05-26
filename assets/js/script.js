@@ -37,19 +37,19 @@ function getWeatherDetails(name, lat, lon, country, state) {
       <div class="details">
         <p>Now</p>
         <h2>${(data.main.temp - 273.15).toFixed(2)}&deg;C</h2>
-        <p>_____</p>
+        <p>${data.weather[0].description}</p>
       </div>
       <div class="weather-icon">
         <img
-          src="https://openweathermap.org/img/wn/04d@2x.png"
+          src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png"
           alt=""
         />
       </div>
     </div>
     <hr />
     <div class="card-footer">
-      <p><i class="fa-light fa-calander"></i>_____</p>
-      <p><i class="fa-light fa-location-dot"></i>_____</p>
+      <p><i class="fa-light fa-calander"></i>${}</p>
+      <p><i class="fa-light fa-location-dot"></i>${}</p>
     </div>
       `;
     })
