@@ -75,7 +75,7 @@ function getWeatherDetails(name, lat, lon, country, state) {
         fiveDaysForecastCard.innerHTML += `
         <div class="forecast-item">
         <div class="icon-wrapper">
-          <img src="https://openweathermap.org/img/wm/${
+          <img src="https://openweathermap.org/img/wn/${
             fiveDaysForecast[i].weather[0].icon
           }.png" alt="" />
           <span>${(fiveDaysForecast[i].main.temp - 273.15).toFixed(
