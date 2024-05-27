@@ -2,17 +2,17 @@ let cityInput = document.getElementById('city_input'),
   searchBtn = document.getElementById('searchBtn'),
   locationBtn = document.getElementById('locationBtn'),
   api_key = '9351ee22b0917e5901e60be617cf6f2b',
-  currentWeatherCard = document.querySelectorAll('.weather-left .card')[0],
+  currentWeatherCard = document.querySelector('.weather-left .card'),
   fiveDaysForecastCard = document.querySelector('.day-forecast'),
-  aqiCard = document.querySelectorAll('.highlights .card')[0],
-  sunriseCard = document.querySelectorAll('.highlights .card')[1],
-  humidityVal = document.getElementById('humidityVal'), // Added
-  pressureVal = document.getElementById('pressureVal'), // Changed to pressureVal
-  visibilityVal = document.getElementById('visibilityVal'), // Added
-  windSpeedVal = document.getElementById('windSpeedVal'), // Added
-  feelsVal = document.getElementById('feelsVal'), // Added
-  hourlyForuecastCard = document.querySelector('.hourly-forecast');
-aqiList = ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'];
+  aqiCard = document.querySelector('.highlights .card:nth-child(1)'),
+  sunriseCard = document.querySelector('.card.sunrise-info'),
+  humidityVal = document.getElementById('humidityval'),
+  pressureVal = document.getElementById('pressureval'),
+  visibilityVal = document.getElementById('visibilityval'),
+  windSpeedVal = document.getElementById('windSpeedval'),
+  feelsVal = document.getElementById('feelsval'),
+  hourlyForecastCard = document.querySelector('.hourly-forecast'),
+  aqiList = ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'];
 
 function getWeatherDetails(name, lat, lon, country, state) {
   const FORECAST_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`;
@@ -113,7 +113,7 @@ function getWeatherDetails(name, lat, lon, country, state) {
         </div>
         <hr />
         <div class="card-footer">
-          <p><i class="fa-light fa-calander"></i> ${
+          <p><i class="fa-light fa-calendar"></i> ${
             days[date.getDay()]
           }, ${date.getDate()} ${
         months[date.getMonth()]
@@ -122,8 +122,8 @@ function getWeatherDetails(name, lat, lon, country, state) {
         </div>`;
 
       let { sunrise, sunset } = data.sys,
-        { timezone, visibility } = data, // Changed to visibility
-        { humidity, pressure, feels_like } = data.main, // Changed to humidity and pressure
+        { timezone, visibility } = data,
+        { humidity, pressure, feels_like } = data.main,
         { speed } = data.wind,
         sRiseTime = moment
           .utc(sunrise, 'X')
@@ -143,23 +143,25 @@ function getWeatherDetails(name, lat, lon, country, state) {
               <div class="icon">
                 <i class="fa-light fa-sunrise fa-4x"></i>
               </div>
+              <div>
+                <p>sunrise</p>
+                <h2>${sRiseTime}</h2>
+              </div>
             </div>
-            <p>sunrise</p>
-            <h2>${sRiseTime}</h2>
-          </div>
-          <div class="item">
-            <div class="icon">
-              <i class="fa-light fa-sunset fa-4x"></i>
+            <div class="item">
+              <div class="icon">
+                <i class="fa-light fa-sunset fa-4x"></i>
+              </div>
+              <div>
+                <p>sunset</p>
+                <h2>${sSetTime}</h2>
+              </div>
             </div>
-            <div>
-              <p>sunset</p>
-              <h2>${sSetTime}</h2>
-            </div>
-          </div>
+         </div>
         `;
-      humidityVal.innerHTML = `${humidity}%`; // Updated
-      pressureVal.innerHTML = `${pressure}hPa`; // Updated
-      visibilityVal.innerHTML = `${visibility / 1000}km`; // Updated
+      humidityVal.innerHTML = `${humidity}%`;
+      pressureVal.innerHTML = `${pressure}hPa`;
+      visibilityVal.innerHTML = `${visibility / 1000}km`;
       windSpeedVal.innerHTML = `${speed}m/s`;
       feelsVal.innerHTML = `${(feels_like - 273.15).toFixed(2)}&deg;C`;
     })
@@ -171,26 +173,25 @@ function getWeatherDetails(name, lat, lon, country, state) {
   fetch(FORECAST_API_URL)
     .then((res) => res.json())
     .then((data) => {
-      let hourlyForuecastCard = data.list;
-      hourlyForuecastCard.innerHTML = '';
+      let hourlyForecasts = data.list.slice(0, 8); // Take only the first 8 forecasts for the hourly section
+      hourlyForecastCard.innerHTML = '';
 
-      for (i = 0; i <= 7; i++) {
-        let hrForecastDate = new Date(hourlyForuecastCard[i].dt_txt);
+      hourlyForecasts.forEach((forecast) => {
+        let hrForecastDate = new Date(forecast.dt_txt);
         let hr = hrForecastDate.getHours();
         let a = 'PM';
         if (hr < 12) a = 'AM';
         if (hr == 0) hr = 12;
-        if (hr > 12) hr = hr - 12;
-        hourlyForuecastCard.innerHTML += `
+        if (hr > 12) hr -= 12;
+        hourlyForecastCard.innerHTML += `
           <div class="card">
-          <p>${hr} ${a}</p>
-          <img src="https://openweathermap.org/img/wn/${
-            hourlyForuecastCard[i].weather[0].icon
-          }.png" alt="" />
-          <p>${(hourlyForuecastCard[i].main.temp - 273.15).toFixed(2)}&deg;C</p>
-        </div>
-          `;
-      }
+            <p>${hr} ${a}</p>
+            <img src="https://openweathermap.org/img/wn/${
+              forecast.weather[0].icon
+            }.png" alt="" />
+            <p>${(forecast.main.temp - 273.15).toFixed(2)}&deg;C</p>
+          </div>`;
+      });
 
       let uniqueForecastDays = [];
       let fiveDaysForecast = data.list.filter((forecast) => {
@@ -201,6 +202,7 @@ function getWeatherDetails(name, lat, lon, country, state) {
         }
         return false;
       });
+
       fiveDaysForecastCard.innerHTML = '';
       fiveDaysForecast.forEach((forecast, i) => {
         if (i > 0) {
@@ -259,7 +261,7 @@ function getUserCoordinates() {
           let { name, country, state } = data[0];
           getWeatherDetails(name, latitude, longitude, country, state);
         })
-        .catch(() => {
+        .catch((err) => {
           console.error('Error fetching your coordinates:', err);
           alert(`Failed to fetch coordinates of  ${latitude}, ${longitude}`);
         });

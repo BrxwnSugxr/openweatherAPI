@@ -76,10 +76,21 @@ hr {
     font-weight: 500;
   }
 }
+
+.hourly-forecast {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+
+  & .card {
+    flex: 1;
+  }
+}
 .weather-data {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+
   & .weather-left {
     grid-column: span 1;
     & .current-weather {
@@ -110,17 +121,53 @@ hr {
   }
   & .weather-right {
     grid-column: span 3;
+
+    .extra-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      width: 100%;
+
+      & .card-item {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+
+      & .card {
+        flex: 1;
+      }
+    }
+
+    .sunrise-sunset {
+      display: flex;
+      gap: 1rem;
+
+      & .item {
+        display: flex;
+        margin-top: 1rem;
+      }
+    }
+
+    .cards {
+      display: flex;
+      gap: 1rem;
+
+      & > div {
+        flex: 1;
+      }
+    }
     & h2 {
       margin-bottom: 10px;
     }
     & .highlights {
-      display: grid;
+      /* display: grid;
       grid-template-columns: repeat(4, 1fr);
       column-gap: 15px;
       & .card:nth-of-type(1),
       & .card:nth-of-type(2) {
-        grid-column: span 2;
-      }
+        grid-column: span 3;
+      }*/
       & .card-head {
         display: flex;
         justify-content: space-between;
