@@ -230,8 +230,10 @@ function getWeatherDetails(name, lat, lon, country, state) {
 
 function getCityCoordinates() {
   let cityName = cityInput.value.trim();
-  cityInput.value = '';
+  // cityInput.value = '';
+  window.localStorage.setItem('selectedCity', JSON.stringify(cityName));
   if (!cityName) return;
+
   let GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${api_key}`;
   fetch(GEOCODING_API_URL)
     .then((res) => res.json())
@@ -250,6 +252,7 @@ function getCityCoordinates() {
 }
 
 function getUserCoordinates() {
+  cityInput.value = '';
   navigator.geolocation.getCurrentPosition(
     (position) => {
       let { latitude, longitude } = position.coords;
@@ -259,6 +262,7 @@ function getUserCoordinates() {
         .then((res) => res.json())
         .then((data) => {
           let { name, country, state } = data[0];
+          window.localStorage.setItem('selectedCity', JSON.stringify(name));
           getWeatherDetails(name, latitude, longitude, country, state);
         })
         .catch((err) => {
@@ -282,4 +286,10 @@ cityInput.addEventListener(
   'keyup',
   (e) => e.key === 'Enter' && getCityCoordinates()
 );
-window.addEventListener('load', getUserCoordinates);
+//window.addEventListener('load', getUserCoordinates);
+
+const parsedCity = JSON.parse(window.localStorage.getItem('selectedCity'));
+if (parsedCity) {
+  cityInput.value = parsedCity;
+  searchBtn.click();
+}
