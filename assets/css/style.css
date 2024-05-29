@@ -1,39 +1,44 @@
 :root {
+  /* Define custom properties (variables) for colors */
   --bg-color1: #212529;
   --bg-color2: #2a2b2d;
-  --aqi-1: #d4e157;
-  --aqi-2: #ffee58;
-  --aqi-3: #ffca28;
-  --aqi-4: #ff7043;
-  --aqi-5: #ef5350;
+  --aqi-1: #d4e157; /* AQI level 1 color */
+  --aqi-2: #ffee58; /* AQI level 2 color */
+  --aqi-3: #ffca28; /* AQI level 3 color */
+  --aqi-4: #ff7043; /* AQI level 4 color */
+  --aqi-5: #ef5350; /* AQI level 5 color */
 }
 
 body {
+  /* Set minimum height and background color for the body */
   min-height: 100vh;
   background-color: var(--bg-color1);
-  color: #fff;
+  color: #fff; /* Text color */
   font-family: sans-serif;
-  padding: 0 15px;
+  padding: 0 15px; /* Padding for the body */
 }
 
 hr {
+  /* Margin below horizontal rule */
   margin-bottom: 10px;
 }
 
 .header {
-  position: sticky;
-  top: 0;
+  /* Styling for the header */
+  position: sticky; /* Sticky position at the top */
+  top: 0; /* Stick to the top */
   background-color: var(--bg-color1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 15px 0;
+  display: flex; /* Flexbox for layout */
+  justify-content: space-between; /* Space between header items */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 10px; /* Bottom margin */
+  padding: 15px 0; /* Vertical padding */
 }
 
 #city_input {
+  /* Styling for the city input field */
   background-color: var(--bg-color2);
-  border: none;
+  border: none; /* No border */
   padding: 12px;
   font-size: 16px;
   border-radius: 25px;
@@ -41,10 +46,12 @@ hr {
 }
 
 #city_input:focus {
+  /* Remove outline on focus */
   outline: none;
 }
 
 #searchBtn {
+  /* Styling for the search button */
   border: none;
   font-size: 16px;
   padding: 12px;
@@ -54,6 +61,7 @@ hr {
 }
 
 #locationBtn {
+  /* Styling for the location button */
   border: none;
   font-size: 16px;
   padding: 12px;
@@ -63,6 +71,7 @@ hr {
 }
 
 .card {
+  /* Styling for cards */
   background-color: var(--bg-color2);
   padding: 15px;
   border-radius: 15px;
@@ -70,57 +79,68 @@ hr {
 }
 
 .card p {
+  /* Styling for paragraphs inside cards */
   font-size: 14px;
   color: #999;
 }
 
 .card h2 {
+  /* Styling for headings inside cards */
   font-size: 32px;
   font-weight: 500;
 }
 
 .hourly-forecast {
+  /* Flexbox layout for hourly forecast cards */
   display: flex;
-  gap: 1rem;
+  gap: 1rem; /* Gap between items */
   width: 100%;
 }
 
 .hourly-forecast .card {
+  /* Flex properties for individual hourly forecast cards */
   flex: 1;
 }
 
 .weather-data {
+  /* Flexbox layout for weather data */
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-wrap: wrap; /* Wrap items */
+  gap: 12px; /* Gap between items */
 }
 
 .weather-left {
+  /* Flex properties for left weather section */
   flex: 1 1 22%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Vertical layout */
 }
 
 .current-weather {
+  /* Flexbox layout for current weather details */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .current-weather h2 {
+  /* Margin for current weather heading */
   margin: 7px 0;
 }
 
 .current-weather p {
+  /* Text color for current weather paragraphs */
   color: #fff;
 }
 
 .card-footer p {
+  /* Styling for paragraphs in card footer */
   font-size: 14px;
   margin-bottom: 12px;
 }
 
 .forecast-item {
+  /* Flexbox layout for forecast items */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -128,107 +148,129 @@ hr {
 }
 
 .icon-wrapper {
+  /* Flexbox layout for icon wrapper */
   display: flex;
   align-items: center;
 }
 
 .weather-right {
+  /* Flex properties for right weather section */
   flex: 3 1 70%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Vertical layout */
 }
 
 .weather-right > div {
+  /* Flex properties for direct child divs of weather-right */
   flex: 3;
 }
 
 .extra-info {
+  /* Flexbox layout for extra info section */
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1rem; /* Gap between items */
   width: 100%;
 }
 
 .card-item {
+  /* Flexbox layout for card items */
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
 }
 
 .extra-info .card {
+  /* Flex properties for cards in extra info section */
   flex: 1;
 }
 
 .sunrise-sunset {
+  /* Flexbox layout for sunrise and sunset section */
   display: flex;
-  gap: 1rem;
+  gap: 1rem; /* Gap between items */
 }
 
 .sunrise-sunset .item {
+  /* Flexbox layout for individual items in sunrise and sunset section */
   display: flex;
   margin-top: 1rem;
 }
 
 .cards {
+  /* Flexbox layout for cards section */
   display: flex;
-  gap: 1rem;
+  gap: 1rem; /* Gap between items */
 }
 
 .cards > div {
+  /* Flex properties for direct child divs of cards */
   flex: 1;
 }
 
 .weather-right h2 {
+  /* Margin for headings inside weather-right */
   margin-bottom: 10px;
 }
 
 .highlights {
+  /* Flexbox layout for highlights section */
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 15px; /* Gap between items */
 }
 
 .highlights h2 {
+  /* Font size for headings in highlights section */
   font-size: 25px;
 }
 
 .highlights .card {
+  /* Flex properties for cards in highlights section */
   flex: 1 1 22%;
 }
 
 .highlights .card-head {
+  /* Flexbox layout for card head in highlights section */
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
 .highlights .air-index {
+  /* Styling for air index elements */
   color: #000;
   padding: 5px 10px;
   border-radius: 15px;
 }
 
 .highlights .air-index.aqi-1 {
+  /* Background color for AQI level 1 */
   background-color: var(--aqi-1);
 }
 
 .highlights .air-index.aqi-2 {
+  /* Background color for AQI level 2 */
   background-color: var(--aqi-2);
 }
 
 .highlights .air-index.aqi-3 {
+  /* Background color for AQI level 3 */
   background-color: var(--aqi-3);
 }
 
 .highlights .air-index.aqi-4 {
+  /* Background color for AQI level 4 */
   background-color: var(--aqi-4);
 }
 
-highlights .air-index.aqi-5 {
+.highlights .air-index.aqi-5 {
+  /* Background color for AQI level 5 */
   background-color: var(--aqi-5);
 }
 
 .highlights .air-indices {
+  /* Flexbox layout for air indices */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -236,17 +278,20 @@ highlights .air-index.aqi-5 {
 }
 
 .highlights .air-indices p {
+  /* Flex properties for paragraphs in air indices */
   text-align: center;
   flex: 1 1 20%;
 }
 
 .highlights .sunrise-sunset {
+  /* Flexbox layout for sunrise and sunset section in highlights */
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
 
 .highlights .sunrise-sunset .item {
+  /* Flex properties for individual items in sunrise and sunset section in highlights */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -254,38 +299,46 @@ highlights .air-index.aqi-5 {
 }
 
 .highlights .sunrise-sunset .item h2 {
+  /* Margin for headings in sunrise and sunset items */
   margin-top: 15px;
 }
 
 .highlights .card-item {
+  /* Flexbox layout for card items in highlights */
   display: flex;
   justify-content: space-between;
 }
 
 .hourly-forecast {
+  /* Flexbox layout for hourly forecast */
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 10px; /* Gap between items */
 }
 
 .hourly-forecast .card {
+  /* Text alignment and flex properties for hourly forecast cards */
   text-align: center;
   flex: 1 1 calc(12.5% - 10px);
 }
 
 .weather-right .cards .highlights {
+  /* Flex properties for highlights section inside weather-right */
   flex: 6;
 }
 
 .weather-right .cards .sunrise-info {
+  /* Flex properties for sunrise-info section inside weather-right */
   flex: 3;
 }
 
 .weather-right .sunrise-sunset h2 {
+  /* Font size for headings inside sunrise-sunset section in weather-right */
   font-size: 18px;
 }
 
 @media (max-width: 1100px) {
+  /* Responsive styles for screen widths up to 1100px */
   .weather-left {
     flex: 1 1 30%;
   }
@@ -304,6 +357,7 @@ highlights .air-index.aqi-5 {
 }
 
 @media (max-width: 1040px) {
+  /* Responsive styles for screen widths up to 1040px */
   .weather-left {
     flex: 1 1 45%;
   }
@@ -322,6 +376,7 @@ highlights .air-index.aqi-5 {
 }
 
 @media (max-width: 992px) {
+  /* Responsive styles for screen widths up to 992px */
   .highlights .card {
     flex: 1 1 45%;
   }
@@ -332,6 +387,7 @@ highlights .air-index.aqi-5 {
 }
 
 @media (max-width: 850px) {
+  /* Responsive styles for screen widths up to 850px */
   .weather-left,
   .weather-right {
     flex: 1 1 100%;
@@ -347,6 +403,7 @@ highlights .air-index.aqi-5 {
 }
 
 @media (max-width: 600px) {
+  /* Responsive styles for screen widths up to 600px */
   .header {
     flex-direction: column;
   }
@@ -368,6 +425,7 @@ highlights .air-index.aqi-5 {
 }
 
 @media (max-width: 520px) {
+  /* Responsive styles for screen widths up to 520px */
   .highlights .card {
     flex: 1 1 100%;
   }
@@ -382,18 +440,21 @@ highlights .air-index.aqi-5 {
 }
 
 @media (max-width: 480px) {
+  /* Responsive styles for screen widths up to 480px */
   .highlights .sunrise-sunset .item {
     flex: 1 1 100%;
   }
 }
 
 @media (max-width: 450px) {
+  /* Responsive styles for screen widths up to 450px */
   .hourly-forecast .card {
     flex: 1 1 calc(33.3% - 10px);
   }
 }
 
 @media (max-width: 380px) {
+  /* Responsive styles for screen widths up to 380px */
   .highlights .air-indices p {
     flex: 1 1 45%;
   }
