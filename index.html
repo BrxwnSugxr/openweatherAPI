@@ -4,40 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>openWeatherAPI</title>
+
+    <!-- Include Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css"
     />
+
+    <!-- Include Boxicons for additional icons -->
     <link
       rel="stylesheet"
       href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
     />
 
+    <!-- Include custom CSS for styling -->
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
   <body>
     <div class="container">
+      <!-- Header section with input and buttons -->
       <div class="header">
         <h2>Weather</h2>
         <div class="weather-input">
+          <!-- Input field for entering city name -->
           <input
             type="text"
             name="city"
             id="city_input"
             placeholder="enter city name"
           />
+          <!-- Search button -->
           <button type="button" id="searchBtn">
             <i class="fa-regular fa-search"></i>Search
           </button>
+          <!-- Current location button -->
           <button type="button" id="locationBtn">
             <i class="bx bx-target-lock"></i>Current Location
           </button>
         </div>
       </div>
+
+      <!-- Main content section for displaying weather data -->
       <div class="weather-data">
+        <!-- Left section for current weather and 5-day forecast -->
         <div class="weather-left">
+          <!-- Card for current weather details -->
           <div class="card">
             <div class="current-weather">
               <div class="details">
@@ -58,6 +71,8 @@
               <p><i class="fa-light fa-location-dot"></i>_____</p>
             </div>
           </div>
+
+          <!-- Card for 5-day weather forecast -->
           <div class="card">
             <h2>5 Day Forecast</h2>
             <div class="day-forecast">
@@ -69,6 +84,7 @@
                 <p>___</p>
                 <p>___</p>
               </div>
+              <!-- Repeat forecast items as necessary -->
               <div class="forecast-item">
                 <div class="icon-wrapper">
                   <img src="https://openweathermap.org/img/wm/02d.png" alt="" />
@@ -104,9 +120,12 @@
             </div>
           </div>
         </div>
+
+        <!-- Right section for today's highlights -->
         <div class="weather-right">
           <h2>Today's Highlights</h2>
           <div class="cards">
+            <!-- Card for Air Quality Index -->
             <div class="highlights">
               <div class="card">
                 <div class="card-head">
@@ -150,6 +169,8 @@
                 </div>
               </div>
             </div>
+
+            <!-- Card for sunrise and sunset times -->
             <div class="card sunrise-info">
               <div class="card-head">
                 <p>sunrise & sunset</p>
@@ -176,7 +197,10 @@
               </div>
             </div>
           </div>
+
+          <!-- Additional weather information -->
           <div class="extra-info">
+            <!-- Card for humidity -->
             <div class="card">
               <div class="card-head">
                 <p>Humidity</p>
@@ -186,6 +210,7 @@
                 <h2 id="humidityval">_____%</h2>
               </div>
             </div>
+            <!-- Card for pressure -->
             <div class="card">
               <div class="card-head">
                 <p>Pressure</p>
@@ -195,6 +220,7 @@
                 <h2 id="pressureval">_____hPa</h2>
               </div>
             </div>
+            <!-- Card for visibility -->
             <div class="card">
               <div class="card-head">
                 <p>Visibility</p>
@@ -204,6 +230,7 @@
                 <h2 id="visibilityval">_____km</h2>
               </div>
             </div>
+            <!-- Card for wind speed -->
             <div class="card">
               <div class="card-head">
                 <p>Wind Speed</p>
@@ -213,6 +240,7 @@
                 <h2 id="windSpeedval">_____m/s</h2>
               </div>
             </div>
+            <!-- Card for "feels like" temperature -->
             <div class="card">
               <div class="card-head">
                 <p>Feels Like</p>
@@ -223,13 +251,18 @@
               </div>
             </div>
           </div>
+
+          <!-- Section for hourly forecast -->
           <h2>Today at</h2>
           <div class="hourly-forecast">
+            <!-- Hourly forecast card items -->
             <div class="card">
               <p>9 AM</p>
+
               <img src="https://openweathermap.org/img/wn/04d.png" alt="" />
               <p>___&deg;C</p>
             </div>
+            <!-- Repeat hourly forecast cards as necessary -->
             <div class="card">
               <p>9 AM</p>
               <img src="https://openweathermap.org/img/wn/04d.png" alt="" />
@@ -269,10 +302,13 @@
         </div>
       </div>
     </div>
-    <!-- Add Moment.js library -->
+
+    <!-- Include Moment.js library -->
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
-    <!-- Your custom JavaScript file -->
+    <!-- Include custom JavaScript file -->
     <script src="./assets/js/script.js"></script>
+    <!-- Include main JavaScript file as module -->
     <!-- <script src="./assets/js/main.js" type="module"></script> -->
   </body>
 </html>
+
