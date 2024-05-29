@@ -1,5 +1,6 @@
+/* Apply default styles to all elements */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
