@@ -2,7 +2,7 @@
 let cityInput = document.getElementById('city_input'),
   searchBtn = document.getElementById('searchBtn'),
   locationBtn = document.getElementById('locationBtn'),
-  api_key = '9351ee22b0917e5901e60be617cf6f2b', // Your OpenWeather API key
+  api_key = '9351ee22b0917e5901e60be617cf6f2b', // Your OpenWeather API key (publickey)
   currentWeatherCard = document.querySelector('.weather-left .card'),
   fiveDaysForecastCard = document.querySelector('.day-forecast'),
   aqiCard = document.querySelector('.highlights .card:nth-child(1)'),
@@ -21,11 +21,30 @@ function getWeatherDetails(name, lat, lon, country, state) {
   const FORECAST_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`;
   const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`;
   const AIR_POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api_key}`;
-
   // Arrays for days of the week and months
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
   // Fetch Air Quality Index (AQI) data
   fetch(AIR_POLLUTION_API_URL)
     .then((res) => res.json())
@@ -34,25 +53,50 @@ function getWeatherDetails(name, lat, lon, country, state) {
       aqiCard.innerHTML = `
         <div class="card-head">
           <p>Air Quality Index</p>
-          <p class="air-index aqi-${data.list[0].main.aqi}">${aqiList[data.list[0].main.aqi - 1]}</p>
+          <p class="air-index aqi-${data.list[0].main.aqi}">${
+        aqiList[data.list[0].main.aqi - 1]
+      }</p>
         </div>
         <div class="air-indices">
           <i class="fa-regular fa-wind fa-3x"></i>
-          <div class="item"><p>PM2.5</p><h2>${pm2_5}</h2></div>
-          <div class="item"><p>PM10</p><h2>${pm10}</h2></div>
-          <div class="item"><p>SO2</p><h2>${data.list[0].components.so2}</h2></div>
-          <div class="item"><p>CO</p><h2>${co}</h2></div>
-          <div class="item"><p>NO</p><h2>${no}</h2></div>
-          <div class="item"><p>NO2</p><h2>${no2}</h2></div>
-          <div class="item"><p>NH3</p><h2>${nh3}</h2></div>
-          <div class="item"><p>O3</p><h2>${o3}</h2></div>
+          <div class="item">
+            <p>PM2.5</p>
+            <h2>${pm2_5}</h2>
+          </div>
+          <div class="item">
+            <p>PM10</p>
+            <h2>${pm10}</h2>
+          </div>
+          <div class="item">
+            <p>SO2</p>
+            <h2>${data.list[0].components.so2}</h2>
+          </div>
+          <div class="item">
+            <p>CO</p>
+            <h2>${co}</h2>
+          </div>
+          <div class="item">
+            <p>NO</p>
+            <h2>${no}</h2>
+          </div>
+          <div class="item">
+            <p>NO2</h2>
+            <h2>${no2}</h2>
+          </div>
+          <div class="item">
+            <p>NH3</p>
+            <h2>${nh3}</h2>
+          </div>
+          <div class="item">
+            <p>O3</p>
+            <h2>${o3}</h2>
+          </div>
         </div>`;
     })
     .catch((err) => {
       console.error('Error fetching AQI:', err);
       alert('Failed to fetch Air Quality Index');
     });
-
   // Fetch current weather data
   fetch(WEATHER_API_URL)
     .then((res) => res.json())
@@ -66,35 +110,63 @@ function getWeatherDetails(name, lat, lon, country, state) {
             <p>${data.weather[0].description}</p>
           </div>
           <div class="weather-icon">
-            <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="" />
+            <img src="https://openweathermap.org/img/wn/${
+              data.weather[0].icon
+            }@2x.png" alt="" />
           </div>
         </div>
         <hr />
         <div class="card-footer">
-          <p><i class="fa-light fa-calendar"></i> ${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</p>
+          <p><i class="fa-light fa-calendar"></i> ${
+            days[date.getDay()]
+          }, ${date.getDate()} ${
+        months[date.getMonth()]
+      } ${date.getFullYear()}</p>
           <p><i class="fa-light fa-location-dot"></i>${name}, ${country}</p>
         </div>`;
 
-      let { sunrise, sunset, timezone, visibility, humidity, pressure, feels_like, wind } = data.main;
-      let sRiseTime = moment.utc(sunrise, 'X').add(timezone, 'seconds').format('hh:mm A');
-      let sSetTime = moment.utc(sunset, 'X').add(timezone, 'seconds').format('hh:mm A');
+      let { sunrise, sunset } = data.sys,
+        { timezone, visibility } = data,
+        { humidity, pressure, feels_like } = data.main,
+        { speed } = data.wind,
+        sRiseTime = moment
+          .utc(sunrise, 'X')
+          .add(timezone, 'seconds')
+          .format('hh:mm A'),
+        sSetTime = moment
+          .utc(sunset, 'X')
+          .add(timezone, 'seconds')
+          .format('hh:mm A');
 
       sunriseCard.innerHTML = `
-        <div class="card-head"><p>sunrise & sunset</p></div>
-        <div class="sunrise-sunset">
-          <div class="item">
-            <div class="icon"><i class="fa-light fa-sunrise fa-4x"></i></div>
-            <div><p>sunrise</p><h2>${sRiseTime}</h2></div>
+          <div class="card-head">
+            <p>sunrise & sunset</p>
           </div>
-          <div class="item">
-            <div class="icon"><i class="fa-light fa-sunset fa-4x"></i></div>
-            <div><p>sunset</p><h2>${sSetTime}</h2></div>
-          </div>
-        </div>`;
+          <div class="sunrise-sunset">
+            <div class="item">
+              <div class="icon">
+                <i class="fa-light fa-sunrise fa-4x"></i>
+              </div>
+              <div>
+                <p>sunrise</p>
+                <h2>${sRiseTime}</h2>
+              </div>
+            </div>
+            <div class="item">
+              <div class="icon">
+                <i class="fa-light fa-sunset fa-4x"></i>
+              </div>
+              <div>
+                <p>sunset</p>
+                <h2>${sSetTime}</h2>
+              </div>
+            </div>
+         </div>
+        `;
       humidityVal.innerHTML = `${humidity}%`;
       pressureVal.innerHTML = `${pressure}hPa`;
       visibilityVal.innerHTML = `${visibility / 1000}km`;
-      windSpeedVal.innerHTML = `${wind.speed}m/s`;
+      windSpeedVal.innerHTML = `${speed}m/s`;
       feelsVal.innerHTML = `${(feels_like - 273.15).toFixed(2)}&deg;C`;
     })
     .catch((err) => {
@@ -119,7 +191,9 @@ function getWeatherDetails(name, lat, lon, country, state) {
         hourlyForecastCard.innerHTML += `
           <div class="card">
             <p>${hr} ${a}</p>
-            <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png" alt="" />
+            <img src="https://openweathermap.org/img/wn/${
+              forecast.weather[0].icon
+            }.png" alt="" />
             <p>${(forecast.main.temp - 273.15).toFixed(2)}&deg;C</p>
           </div>`;
       });
@@ -142,7 +216,9 @@ function getWeatherDetails(name, lat, lon, country, state) {
           fiveDaysForecastCard.innerHTML += `
             <div class="forecast-item">
               <div class="icon-wrapper">
-                <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png" alt="" />
+                <img src="https://openweathermap.org/img/wn/${
+                  forecast.weather[0].icon
+                }.png" alt="" />
                 <span>${(forecast.main.temp - 273.15).toFixed(2)}&deg;C</span>
               </div>
               <p>${date.getDate()} ${months[date.getMonth()]}</p>
@@ -160,9 +236,8 @@ function getWeatherDetails(name, lat, lon, country, state) {
 // Function to get city coordinates from user input
 function getCityCoordinates() {
   let cityName = cityInput.value.trim();
-  window.localStorage.setItem('selectedCity', JSON.stringify(cityName)); // Store the city name in localStorage
-
-
+  // cityInput.value = '';
+  window.localStorage.setItem('selectedCity', JSON.stringify(cityName));
   if (!cityName) return;
 
   let GEOCODING_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${api_key}`;
@@ -171,7 +246,7 @@ function getCityCoordinates() {
     .then((data) => {
       if (data.length > 0) {
         let { name, lat, lon, country, state } = data[0];
-        getWeatherDetails(name, lat, lon, country, state); // Get weather details using the coordinates
+        getWeatherDetails(name, lat, lon, country, state);
       } else {
         alert(`No data found for city: ${cityName}`);
       }
@@ -199,22 +274,26 @@ function getUserCoordinates() {
         })
         .catch((err) => {
           console.error('Error fetching your coordinates:', err);
-          alert(`Failed to fetch coordinates of ${latitude}, ${longitude}`);
+          alert(`Failed to fetch coordinates of  ${latitude}, ${longitude}`);
         });
     },
     (error) => {
       if (error.code === error.PERMISSION_DENIED) {
-        alert('Geolocation permission denied, Please reset location permission to grant access again');
+        alert(
+          'Geolocation permission denied, Please reset location permission to grant access again'
+        );
       }
     }
   );
 }
-
 // Event listeners for the buttons and input field
 searchBtn.addEventListener('click', getCityCoordinates);
 locationBtn.addEventListener('click', getUserCoordinates);
-cityInput.addEventListener('keyup', (e) => e.key === 'Enter' && getCityCoordinates());
-
+cityInput.addEventListener(
+  'keyup',
+  (e) => e.key === 'Enter' && getCityCoordinates()
+);
+//window.addEventListener('load', getUserCoordinates);
 // Automatically fetch weather details for the previously selected city on page load
 const parsedCity = JSON.parse(window.localStorage.getItem('selectedCity'));
 if (parsedCity) {
