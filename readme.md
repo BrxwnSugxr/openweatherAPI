@@ -18,7 +18,7 @@ The weather app includes a search option, a list of cities, and a five-day forec
 ## Installation
 
 1.Clone the repository:
-git clone https://github.com/yourusername/weather-dashboard.git
+git clone https://github.com/BrxwnSugxr/MindOverMatter.git
 
 2.Navigate to the project directory:
 cd weather-dashboard
@@ -27,8 +27,8 @@ cd weather-dashboard
 
 ## Deployment
 
-The application is deployed at: [this](https://brxwnsugxr.github.io//).
-The Github repository can be found at: [this](https://brxwnsugxr.github.io//).
+The application is deployed at: [this](https://brxwnsugxr.github.io/openweatherAPI/).
+The Github repository can be found at: [this](https://github.com/BrxwnSugxr/MindOverMatter).
 
 ## User Story
 
@@ -87,6 +87,7 @@ Below are images of the user interface of the calendar as displayed to the user:
 
 ![A user submits search then saved in local storaged displays.](image.png)
 ![A user press current location, turn GPS on get current location.](image-1.png)
+![overview of application](image-2.png)
 
 URL to deployed application:
 
