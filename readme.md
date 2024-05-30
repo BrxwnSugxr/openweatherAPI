@@ -6,7 +6,7 @@ This project is a weather dashboard application that retrieves weather data for 
 
 The following image shows the web application's appearance and functionality:
 
-![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for Perth](image-3.png)
+![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for Perth](image.png)
 
 ## Usage
 
@@ -18,11 +18,13 @@ The following image shows the web application's appearance and functionality:
 ## Installation
 
 1. **Clone the repository**:
+
    ```sh
    git clone https://github.com/BrxwnSugxr/openweatherAPI.git
    ```
 
 2. **Navigate to the project directory**:
+
    ```sh
    cd openweatherAPI
    ```
