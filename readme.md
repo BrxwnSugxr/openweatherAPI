@@ -88,7 +88,7 @@ The following animation demonstrates the application functionality:
 
 Below are images of the user interface of the calendar as displayed to the user:
 
-![A user submits search then saved in local storaged displays.](.![alt text](image.png))
+(![A user submits search then saved in local storaged displays.](image.png))
 ![A user clicks on slots on the color-coded calendar and edits the events.](./img/workday_scheduler_screenshot2.png)
 
 URL to deployed application:
