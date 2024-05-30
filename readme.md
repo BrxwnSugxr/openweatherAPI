@@ -63,7 +63,6 @@ The following animation demonstrates the application functionality:
 3. Create sections to display current weather, hourly forecast, daily forecast, and additional weather highlights.
 4. Use appropriate HTML elements for structuring the layout and content.
 
-
 ## Pseudo Code for CSS
 
 1. Set default styles for all elements to reset margins and paddings.
@@ -72,7 +71,6 @@ The following animation demonstrates the application functionality:
 4. Define card styles for displaying weather information.
 5. Arrange layout styles for the weather data sections, such as flexbox or grid.
 6. Apply media queries for responsiveness across different screen sizes.
-
 
 ## Pseudo Code for JavaScript
 
@@ -85,15 +83,13 @@ The following animation demonstrates the application functionality:
 7. Utilize localStorage to store persistent data such as user-selected cities.
 8. Implement functionality to dynamically update the UI based on user interactions.
 
-
 Below are images of the user interface of the calendar as displayed to the user:
 
-(![A user submits search then saved in local storaged displays.](image.png))
-![A user clicks on slots on the color-coded calendar and edits the events.](./img/workday_scheduler_screenshot2.png)
+![A user submits search then saved in local storaged displays.](image.png)
+![A user press current location, turn GPS on get current location.](image-1.png)
 
 URL to deployed application:
 
 URL to GitHub repository:
 
 For any questions, please contact me at jsdev.mas@gmail.com
-
