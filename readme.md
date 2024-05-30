@@ -18,7 +18,7 @@ The weather app includes a search option, a list of cities, and a five-day forec
 ## Installation
 
 1.Clone the repository:
-git clone https://github.com/BrxwnSugxr/MindOverMatter.git
+git clone https://github.com/BrxwnSugxr/openweatherAPI.git
 
 2.Navigate to the project directory:
 cd weather-dashboard
