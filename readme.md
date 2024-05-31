@@ -12,8 +12,6 @@ The following image shows the web application's appearance and functionality:
 
 1. **Enter a city name**: Type the name of the city you want to search for into the input field.
 2. **Search**: Click the "Search" button to fetch and display the current and future weather conditions.
-3. **Search History**: The city name will be saved in the search history.
-4. **View Saved Cities**: Click on a city name in the search history to view its weather data again.
 
 ## Installation
 
